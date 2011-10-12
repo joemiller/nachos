@@ -15,6 +15,12 @@ class Nachos
       end
     end
 
+    def owned
+      client.list_repos.sort_by do |repo|
+        [repo["owner"], repo["name"]].join("/")
+      end
+    end
+
     # Either returns the GitHub user as set by git-config(1) or aborts
     # with an error message.
     def github_user(fatal = true)

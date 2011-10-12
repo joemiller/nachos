@@ -20,15 +20,28 @@ class Nachos::CLI < Thor
     end
   end
   
-  desc "sync", "Sync repositories"
+  desc "owned", "Display your owned repos on Github"
+  def owned
+     main.owned.each do |repo|
+      shell.say "#{repo.name} - #{repo.description}"
+    end
+  end
+  
+  desc "sync", "Sync my watched repositories"
   def sync
     shell.say main.github_summary
-    main.sync
+    main.sync main.watched
+  end
+
+  desc "sync_owned", "Sync only my owned repositories"
+  def sync_owned
+    shell.say main.github_summary
+    main.sync main.owned
   end
   
   desc "config", "Create default config (if it doesn't exist)"
   def config
-    main.config
+    shell.say main.config.create_file
   end
   
   private

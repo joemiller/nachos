@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'bundler/setup'
 require 'rake'
 require File.join(File.dirname(__FILE__), *%w[lib nachos version])
 

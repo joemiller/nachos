@@ -17,9 +17,9 @@ class Nachos
 Current configuration: #{config.display_config}]
     end
     
-    def sync
+    def sync repos
       chdir config.repo_root do
-        watched.each { |repo| sync_repo(repo) }
+        repos.each { |repo| sync_repo(repo) }
       end
     end
     
